@@ -1,2 +1,11 @@
 ** Resolve URL 
 - new URL("./","https://www.unpkg.com/nested-test-pkg@1.0.0/src/index.js")
+
+** Plugin
+- Onload
+    - import React, {useState} from 'react@16.0.0';
+
+** esbuild
+- otimizacao
+    - define
+        - 'process.env.NODE_ENV': '"production"', * replace code DEBUG
