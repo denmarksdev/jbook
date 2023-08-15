@@ -9,3 +9,7 @@
 - otimizacao
     - define
         - 'process.env.NODE_ENV': '"production"', * replace code DEBUG
+
+
+** Implmented cache
+- localForage lib for indexDB

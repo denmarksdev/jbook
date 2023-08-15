@@ -1,6 +1,11 @@
 import * as esbuild from 'esbuild-wasm';
 import axios from 'axios';
-import { url } from 'inspector';
+import localForage from 'localforage'
+
+const fileCache = localForage.createInstance({
+    name: 'filecache'
+});
+
 
 export const unpkgPathPlugin = () => {
     return {
@@ -12,11 +17,11 @@ export const unpkgPathPlugin = () => {
                     return { path: args.path, namespace: 'a' };
                 }
 
-                if (args.path.includes('./')|| args.path.includes('../')){
+                if (args.path.includes('./') || args.path.includes('../')) {
 
                     return {
                         namespace: 'a',
-                        path: new URL(args.path, 'https://unpkg.com' + args.resolveDir + '/' ).href
+                        path: new URL(args.path, 'https://unpkg.com' + args.resolveDir + '/').href
                     }
                 }
 
@@ -40,13 +45,28 @@ export const unpkgPathPlugin = () => {
                     };
                 }
 
-                 const  {data, request } = await axios.get(args.path);
+                // Check to seer if we have already fetched this file
+                // and if it is n the cache
 
-                 return  {
+                const cahcheResult = await fileCache.getItem<esbuild.OnLoadResult>(args.path);
+
+                // if it is, reutrn it immediately
+                if (cahcheResult) {
+                    return cahcheResult;
+                }
+
+                const { data, request } = await axios.get(args.path);
+
+                const result: esbuild.OnLoadResult = {
                     loader: 'jsx',
                     contents: data,
-                    resolveDir: new  URL('./', request.responseURL).pathname
-                 }
+                    resolveDir: new URL('./', request.responseURL).pathname
+                }
+
+                // store response cache
+                await fileCache.setItem(args.path, result);
+
+                return result;
             });
         },
     };
