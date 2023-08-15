@@ -1,0 +1,2 @@
+** Resolve URL 
+- new URL("./","https://www.unpkg.com/nested-test-pkg@1.0.0/src/index.js")
