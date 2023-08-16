@@ -14,4 +14,10 @@
 - localForage lib for indexDB
 
 ** bundler css
-- import 'bulma/css/bulma.css';
+    - import 'bulma/css/bulma.css';
+    - small shortcomming *
+        -    `
+               const style = document.createElement('style');
+               style.innerText = '${escaped}';
+               document.head.appendChild(style);
+             `
