@@ -12,3 +12,6 @@
 
 ** implement cache
 - localForage lib for indexDB
+
+** bundler css
+- import 'bulma/css/bulma.css';
