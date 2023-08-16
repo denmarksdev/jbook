@@ -10,6 +10,5 @@
     - define
         - 'process.env.NODE_ENV': '"production"', * replace code DEBUG
 
-
-** Implmented cache
+** implement cache
 - localForage lib for indexDB

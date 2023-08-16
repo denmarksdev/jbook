@@ -4,7 +4,7 @@ import { createRoot } from 'react-dom/client';
 import { unpkgPathPlugin } from "./plugins/unpkg-path-plugin";
 
 const App = () => {
-  const [input, setInput] = useState("const App = () => <h1>Hi there</h1>");
+  const [input, setInput] = useState('');
   const [code, setCode] = useState("");
   const ref = useRef<any>(null);
 
@@ -24,7 +24,7 @@ const App = () => {
         entryPoints: ['index.js'],
         bundle: true,
         write: false,
-        plugins: [unpkgPathPlugin()],
+        plugins: [unpkgPathPlugin(input)],
         define: {
           'process.env.NODE_ENV': '"production"',
           global: 'window'
