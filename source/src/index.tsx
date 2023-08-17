@@ -17,6 +17,7 @@ const App = () => {
     });
   };
 
+
   const onClick = async () => {
     if (!ref.current) {
       return;
@@ -63,6 +64,10 @@ const App = () => {
     </body>
   </html>
   `;
+  
+  if (iframeRef.current){
+    iframeRef.current.srcdoc = html;
+  }
 
   return (
     <div>
