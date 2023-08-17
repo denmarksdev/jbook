@@ -15,7 +15,7 @@
 
 ** bundler css
       import 'tiny-test-pkg';
-    - import 'bulma/css/bulma.css';
+      import 'bulma/css/bulma.css';
     - small shortcomming *
         -    `
                const style = document.createElement('style');
