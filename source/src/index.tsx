@@ -6,7 +6,6 @@ import { fetchPlugin } from "./plugins/fetch-plugin";
 
 const App = () => {
   const [input, setInput] = useState("");
-  const [code] = useState("");
   const ref = useRef<any>(null);
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
@@ -79,9 +78,8 @@ const App = () => {
       <div>
         <button onClick={onClick}> Submit</button>
       </div>
-      <pre>{code}</pre>
       <iframe
-        title="Code run container"
+        title="preview"
         srcDoc={html}
         sandbox="allow-scripts"
         ref={iframeRef}
