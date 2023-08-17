@@ -6,7 +6,7 @@ import { fetchPlugin } from "./plugins/fetch-plugin";
 
 const App = () => {
   const [input, setInput] = useState("");
-  const [code, setCode] = useState("");
+  const [code] = useState("");
   const ref = useRef<any>(null);
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
@@ -34,7 +34,10 @@ const App = () => {
     });
 
     //setCode(result.outputFiles[0].text);
-    iframeRef.current?.contentWindow?.postMessage(result.outputFiles[0].text, "*")
+    iframeRef.current?.contentWindow?.postMessage(
+      result.outputFiles[0].text,
+      "*"
+    );
   };
 
   useEffect(() => {
@@ -48,7 +51,13 @@ const App = () => {
       <div id="root"></div>
       <script>
           window.addEventListener('message', (event) => {
+            try{
               eval(event.data);
+            } catch (err) {
+              const root = document.getElementById('root');
+              root.innerHTML = '<div style="color:red;" ><h4>Runtime Error</h4>' + err + '</div>';
+              console.error(err);
+            }
           }, false)
       </script>
     </body>
@@ -79,6 +88,3 @@ const App = () => {
 const container = document.getElementById("root");
 const root = createRoot(container!); // createRoot(container!) if you use TypeScript
 root.render(<App />);
-
-
-
