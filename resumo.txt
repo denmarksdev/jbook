@@ -14,6 +14,7 @@
 - localForage lib for indexDB
 
 ** bundler css
+      import 'tiny-test-pkg';
     - import 'bulma/css/bulma.css';
     - small shortcomming *
         -    `

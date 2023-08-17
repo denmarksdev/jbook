@@ -1,7 +1,6 @@
 import * as esbuild from 'esbuild-wasm';
 import axios from 'axios';
 import localForage from 'localforage'
-
 const fileCache = localForage.createInstance({
     name: 'filecache'
 });
@@ -17,16 +16,15 @@ export const fetchPlugin = (inputCode: string) => {
                 };
             })
 
+        build.onLoad({filter: /.*/}, async  (args: any) =>  {
+            const cahcheResult = await fileCache.getItem<esbuild.OnLoadResult>(args.path);
+            // if it is, reutrn it immediately
+            if (cahcheResult) {
+                return cahcheResult;
+            }
+        })
+
             build.onLoad({ filter: /.css$/ }, async (args: any) => {
-                // Check to seer if we have already fetched this file
-                // and if it is n the cache
-                const cahcheResult = await fileCache.getItem<esbuild.OnLoadResult>(args.path);
-
-                // if it is, reutrn it immediately
-                if (cahcheResult) {
-                    return cahcheResult;
-                }
-
                 const { data, request } = await axios.get(args.path);
 
                 const escaped = data
@@ -55,16 +53,6 @@ export const fetchPlugin = (inputCode: string) => {
             })
 
             build.onLoad({ filter: /.*/ }, async (args: any) => {
-                //Check to seer if we have already fetched this file
-                //and if it is n the cache
-
-                const cahcheResult = await fileCache.getItem<esbuild.OnLoadResult>(args.path);
-
-                // if it is, reutrn it immediately
-                if (cahcheResult) {
-                    return cahcheResult;
-                }
-
                 const { data, request } = await axios.get(args.path);
 
                 const result: esbuild.OnLoadResult = {
