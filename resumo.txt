@@ -40,3 +40,22 @@
         </body>
     </html>
   
+** Monaco
+ -npm install --save-exact @monaco-editor/react@3.7.5 --legacy-peer-deps
+ - npm i bulmaswatch
+
+** CRA support
+- "react-scripts": "4.0.1",
+- "start": "react-scripts --openssl-legacy-provider start",
+        rm package-lock.json
+        rm -r node_modules
+        npm install --legacy-peer-deps
+
+const App = () =>  {
+  return <div> 
+   <h1></h1>
+   <button onClick={() => {console.log('Click')}} >click me</button>
+  </div>
+}
+
+npm install --save-exact monaco-jsx-highlighter@0.0.15 jscodeshift@0.11.0 @types/codeshift@0.7.2 --legacy-peer-deps

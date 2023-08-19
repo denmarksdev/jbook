@@ -1,47 +1,58 @@
 import { useRef } from "react";
 import MonacoEditor from "@monaco-editor/react";
 import type monaco from "monaco-editor";
-
 import { format } from "prettier/";
 import * as parser from "prettier/parser-babel";
-
+import './code-editor.css'
 
 interface CodeEditProps {
   intialValue: string;
   onChange: (value: string) => void;
 }
 
-export default function CodeEditor({ intialValue: value }: CodeEditProps) {
+export default function CodeEditor({ intialValue, onChange }: CodeEditProps) {
   const editorRef = useRef<monaco.editor.IStandaloneCodeEditor | null>(null);
 
   const onFormatClick = () => {
     const unformated = editorRef.current?.getModel()?.getValue();
 
-     // format that value
+    // format that value
     if (unformated) {
-
       const formatted = format(unformated, {
         parser: "babel",
-        plugins:[parser]
-      });
+        plugins: [parser],
+      }).replace(/\n$/, '');
 
       editorRef.current?.setValue(formatted);
     }
   };
 
   return (
-    <div>
-      <button onClick={onFormatClick}>Format</button>
+    <div className="editor-wrapper">
+      <button
+        className="button button-format is-primary is-small"
+        onClick={onFormatClick}
+      >
+        Format
+      </button>
       <MonacoEditor
         theme="vs-dark"
-        value={value}
+        value={intialValue}
         height="500px"
         language="javascript"
-        onMount={(monaco) => {
-          editorRef.current = monaco;
+        onMount={(editor) => {
+          editorRef.current = editor;
+
+        //   const monacoJSXHighlighter = new MonacoJSXHighlighter(
+        //     monaco, parser, traverse, editor
+        //  );
+
+        //  monacoJSXHighlighter.highlightOnDidChangeModelContent();
+        //  monacoJSXHighlighter.addJSXCommentCommand();
+
         }}
         onChange={(e, m) => {
-          console.log(e);
+          onChange(e ?? '');
         }}
         options={{
           wordWrap: "on",
