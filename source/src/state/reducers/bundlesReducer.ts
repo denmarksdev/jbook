@@ -1,1 +1,1 @@
-export interface BulndleIterface {}
+export interface BundleReducer {}
