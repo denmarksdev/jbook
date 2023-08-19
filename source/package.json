@@ -9,7 +9,9 @@
     "@types/prettier": "^2.1.6",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
+    "@types/react-redux": "7.1.25",
     "@types/react-resizable": "3.0.2",
+    "@uiw/react-md-editor": "3.23.5",
     "axios": "^1.4.0",
     "bulmaswatch": "^0.8.1",
     "esbuild-wasm": "0.8.27",
@@ -19,8 +21,11 @@
     "prettier": "^2.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-redux": "8.1.2",
     "react-resizable": "3.0.4",
     "react-scripts": "5.0.1",
+    "redux": "4.2.1",
+    "redux-thunk": "2.3.0",
     "typescript": "^4.9.5"
   },
   "scripts": {

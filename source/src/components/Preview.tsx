@@ -9,13 +9,20 @@ const html = `
   <body>
     <div id="root"></div>
     <script>
+        const handleError = (error) => {
+          const root = document.getElementById('root');
+          root.innerHTML = '<div style="color:red;" ><h4>Runtime Error</h4>' + error + '</div>';
+          console.error(error);
+        };
+        window.addEventListener('error', (event)=>  {
+          event.preventDefault();
+          handleError(event.error);
+        });
         window.addEventListener('message', (event) => {
           try{
             eval(event.data);
           } catch (err) {
-            const root = document.getElementById('root');
-            root.innerHTML = '<div style="color:red;" ><h4>Runtime Error</h4>' + err + '</div>';
-            console.error(err);
+            handleError(err);
           }
         }, false)
     </script>
@@ -25,9 +32,10 @@ const html = `
 
 interface PreviewProps {
   code: string;
+  error: string
 }
 
-export default function Preview({ code }: PreviewProps) {
+export default function Preview({ code, error }: PreviewProps) {
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
   useEffect(() => {
@@ -40,6 +48,7 @@ export default function Preview({ code }: PreviewProps) {
   }, [code]);
 
   return (
+    
     <div className="preview-wrapper">
       <iframe
         title="preview"
@@ -47,6 +56,7 @@ export default function Preview({ code }: PreviewProps) {
         sandbox="allow-scripts"
         ref={iframeRef}
       />
+      {error && <div className="preview-error">{error}</div>}
     </div>
   );
 }

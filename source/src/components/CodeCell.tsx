@@ -8,16 +8,14 @@ import bundler from "../bundler";
 const CodeCell = () => {
   const [input, setInput] = useState("");
   const [code, setCode] = useState("");
+  const [error, setError] = useState("");
 
   useEffect(() => {
     const timer = setTimeout(async () => {
-      try {
-        const output = await bundler(input);
-      setCode(output);
-        
-      } catch (error) {
-        console.error(error)
-      }
+      debugger;
+      const output = await bundler(input);
+      setCode(output.code);
+      setError(output.err)
     }, 500);
 
     return () => {
@@ -35,7 +33,7 @@ const CodeCell = () => {
           />
         </Resisable>
 
-        <Preview code={code} />
+        <Preview code={code} error={error}/>
       </div>
     </Resisable>
   );
