@@ -38,18 +38,15 @@ export default function CodeEditor({ intialValue, onChange }: CodeEditProps) {
       <MonacoEditor
         theme="vs-dark"
         value={intialValue}
-        height="500px"
+        height="100%"
         language="javascript"
         onMount={(editor) => {
           editorRef.current = editor;
-
         //   const monacoJSXHighlighter = new MonacoJSXHighlighter(
         //     monaco, parser, traverse, editor
         //  );
-
         //  monacoJSXHighlighter.highlightOnDidChangeModelContent();
         //  monacoJSXHighlighter.addJSXCommentCommand();
-
         }}
         onChange={(e, m) => {
           onChange(e ?? '');

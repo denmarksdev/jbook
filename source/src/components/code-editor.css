@@ -1,6 +1,7 @@
 .editor-wrapper{
     position: relative;
     height: 100%;
+    width: 100%;
 }
 
 .editor-wrapper .button-format {
@@ -155,3 +156,8 @@
     color: #0c141f;
   }
   
+  .editor-container {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+  }
