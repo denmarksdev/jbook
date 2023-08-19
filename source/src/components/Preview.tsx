@@ -2,8 +2,10 @@ import { useEffect, useRef } from "react";
 import './preview.css'
 
 const html = `
-<html>
-  <head></head>
+<html >
+  <head>
+    <style>html {background-color: white;}</style>
+  </head>
   <body>
     <div id="root"></div>
     <script>
@@ -31,7 +33,9 @@ export default function Preview({ code }: PreviewProps) {
   useEffect(() => {
     if (iframeRef.current) {
       iframeRef.current.srcdoc = html;
-      iframeRef.current?.contentWindow?.postMessage(code, "*");
+      setTimeout(() => {
+        iframeRef.current?.contentWindow?.postMessage(code, "*");
+      }, 500);
     }
   }, [code]);
 
