@@ -64,3 +64,19 @@ npm install --save-exact monaco-jsx-highlighter@0.0.15 jscodeshift@0.11.0 @types
 -- React Resizable
 
 npm install --save-exact react-resizable@3.0.4 @types/react-resizable@3.0.2 --legacy-peer-deps
+
+** Handler error
+ } catch (err) {
+    if (err instanceof Error) {
+      return {
+        code: "",
+        err: err.message,
+      };
+    } else {
+      throw err;
+    }
+  }
+
+** marksdown
+
+@uiw/react-md-editor
