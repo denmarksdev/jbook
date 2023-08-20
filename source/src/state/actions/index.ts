@@ -1,13 +1,13 @@
 import { ActionType } from "../action-types";
 import { CellTypes } from "../cell";
 
-export type DirectionType  = "up" | "down";
+export type DirectionType = "up" | "down";
 
 export interface MoveCellAction {
     type: ActionType.MoveCell
     payload: {
         id: string;
-        direction:  DirectionType
+        direction: DirectionType
     }
 }
 
@@ -32,9 +32,28 @@ export interface UpdateCellAction {
     }
 }
 
-export type Action =
-    MoveCellAction |
-    DeleteCellAction |
-    InsertCellBeforeAction |
-    UpdateCellAction
+export interface BunlderStartAction {
+    type: ActionType.BundlerStart,
+    payload: {
+        cellId: string;
+    }
+}
 
+export interface BunlderCompletection {
+    type: ActionType.BundleComplete,
+    payload: {
+        cellId: string;
+        bundle: {
+            code: string,
+            err: string
+        }
+    }
+}
+
+export type Action =
+    | MoveCellAction 
+    | DeleteCellAction 
+    | InsertCellBeforeAction 
+    | UpdateCellAction 
+    | BunlderStartAction
+    | BunlderCompletection
