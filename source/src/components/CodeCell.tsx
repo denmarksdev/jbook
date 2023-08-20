@@ -1,18 +1,24 @@
 
-import { useState, useEffect } from "react";
+import React , { useState, useEffect } from "react";
 import CodeEditor from "../components/CodeEditor";
 import Preview from "../components/Preview";
 import Resisable from "./Resisable";
 import bundler from "../bundler";
+import { Cell } from "../state";
+import { useActions } from "../hooks/use-actions";
 
-const CodeCell = () => {
-  const [input, setInput] = useState("");
-  const [code, setCode] = useState("");
+interface CodeCellProps {
+  cell: Cell
+}
+
+const CodeCell: React.FC<CodeCellProps> = ({cell}) => {
+  const [code, setCode] = useState(cell.content);
   const [error, setError] = useState("");
+  const { updateCell } = useActions();
 
   useEffect(() => {
     const timer = setTimeout(async () => {
-      const output = await bundler(input);
+      const output = await bundler(cell.content);
       setCode(output.code);
       setError(output.err)
     }, 500);
@@ -20,15 +26,15 @@ const CodeCell = () => {
     return () => {
       clearTimeout(timer);
     };
-  }, [input]);
+  }, [cell.content]);
 
   return (
     <Resisable direction="vertical">
       <div style={{ height: "100%", display: "flex", flexDirection: "row" }}>
         <Resisable direction="horizontal">
           <CodeEditor
-            intialValue={input}
-            onChange={(value) => setInput(value)}
+            intialValue={cell.content}
+            onChange={(value) => updateCell(cell.id, value)}
           />
         </Resisable>
 
