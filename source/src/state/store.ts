@@ -6,7 +6,7 @@ import { ActionType } from './action-types';
 export const store = createStore(reducers, {}, applyMiddleware(thunk));
 
 store.dispatch({
-    type: ActionType.InserCellBefore,
+    type: ActionType.InserCellAfter,
     payload: {
         id: null,
         type: 'code',
@@ -14,7 +14,7 @@ store.dispatch({
 })
 
 store.dispatch({
-    type: ActionType.InserCellBefore,
+    type: ActionType.InserCellAfter,
     payload: {
         id: null,
         type: 'text'
@@ -22,7 +22,7 @@ store.dispatch({
 })
 
 store.dispatch({
-    type: ActionType.InserCellBefore,
+    type: ActionType.InserCellAfter,
     payload: {
         id: null,
         type: 'code',

@@ -1,20 +1,19 @@
 import "./style.css";
 import { useActions } from "../../hooks/use-actions";
-import React from "react";
 
 interface AddCellProps {
   nextCellId: string | null;
 }
 
 export default function AddCell({ nextCellId }: AddCellProps) {
-  const { insertCellBefore } = useActions();
+  const { insertCellAfter } = useActions();
 
   return (
     <div className="add-cell">
       <div className="add-buttons">
         <button
           className="button is-rounded is-primary is-small"
-          onClick={() => insertCellBefore(null, "code")}
+          onClick={() => insertCellAfter(nextCellId, "code")}
         >
           <span className="icon is-small">
             <i className="fas fa-plus" />
@@ -23,7 +22,7 @@ export default function AddCell({ nextCellId }: AddCellProps) {
         </button>
         <button
           className="button is-rounded is-primary is-small"
-          onClick={() => insertCellBefore(null, "text")}
+          onClick={() => insertCellAfter(nextCellId, "text")}
         >
           <span className="icon is-small">
             <i className="fas fa-plus" />

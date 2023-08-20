@@ -30,7 +30,7 @@ const CodeCell: React.FC<CodeCellProps> = ({cell}) => {
 
   return (
     <Resisable direction="vertical">
-      <div style={{ height: "100%", display: "flex", flexDirection: "row" }}>
+      <div style={{ height: "calc(100% - 12px)", display: "flex", flexDirection: "row" }}>
         <Resisable direction="horizontal">
           <CodeEditor
             intialValue={cell.content}

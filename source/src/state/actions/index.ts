@@ -17,7 +17,7 @@ export interface DeleteCellAction {
 }
 
 export interface InsertCellBeforeAction {
-    type: ActionType.InserCellBefore
+    type: ActionType.InserCellAfter
     payload: {
         id: string | null,
         type: CellTypes

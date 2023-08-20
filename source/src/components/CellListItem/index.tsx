@@ -34,7 +34,7 @@ export default function CellListItem({ cell }: CellListItemProps) {
 
   return (
     <div className="cell-list-item">
-      <AddCell nextCellId="1" />
+      <AddCell nextCellId={cell.id} />
       {child}
     </div>
   );
