@@ -4,7 +4,7 @@ import { Cell } from "../../state/cell";
 import CodeCell from "../CodeCell";
 import TextEditor from "../TextEditor";
 import ActionBar from "../ActionBar";
-import AddCell from "../AddCell.tsx";
+import AddCell from "../AddCell";
 
 interface CellListItemProps {
   cell: Cell;

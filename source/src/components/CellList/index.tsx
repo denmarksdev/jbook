@@ -1,4 +1,6 @@
+import './style.css';
 import { useTypedSelector } from "../../hooks/use-typed-selector";
+import AddCell from "../AddCell";
 import CellListItem from "../CellListItem";
 
 export default function CellList() {
@@ -10,5 +12,12 @@ export default function CellList() {
     <CellListItem key={cell.id} cell={cell} />
   ));
 
-  return <div>{renderdeCells}</div>;
+  return (
+    <div>
+      {renderdeCells}
+      <div className={cells.length === 0 ? 'force-visible' :''}>
+        <AddCell nextCellId={null} />
+      </div>
+    </div>
+  );
 }
