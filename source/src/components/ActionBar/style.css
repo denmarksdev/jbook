@@ -1,9 +1,9 @@
 .action-bar {
     position: absolute;
-    top:0;
+    top:-3;
     right: 0;
     opacity: 0.25;
-    transition: opacity 0.3s;
+    transition: opacity 0.3ms;
 }
 
 .action-bar:hover {

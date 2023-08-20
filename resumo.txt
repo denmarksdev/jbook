@@ -85,3 +85,7 @@ npm install --save-exact react-resizable@3.0.4 @types/react-resizable@3.0.2 --le
 
 
 ** immer
+
+
+** fontawesome
+npm install @fortawesome/fontawesome-free@5.15.1 --legacy-peer-deps
