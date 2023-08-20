@@ -49,10 +49,8 @@ export default function TextEditor({ cell }: TextEditorProps) {
   }
 
   return (
-    <div className="text-editor card" onClick={() => setEditing(true)}>
-      <div className="card-content">
-        <MDEditor.Markdown source={cell.content || 'Click to edit'} />
-      </div>
+    <div className="text-editor" onClick={() => setEditing(true)}>
+        <MDEditor.Markdown source={cell.content || 'Click to edit'} style={{ minHeight:100}} />
     </div>
   );
 }

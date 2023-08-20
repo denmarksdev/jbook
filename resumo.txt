@@ -1,3 +1,5 @@
+--legacy-peer-deps
+
 ** Resolve URL 
 - new URL("./","https://www.unpkg.com/nested-test-pkg@1.0.0/src/index.js")
 
@@ -80,3 +82,6 @@ npm install --save-exact react-resizable@3.0.4 @types/react-resizable@3.0.2 --le
 ** marksdown
 
 @uiw/react-md-editor
+
+
+** immer
